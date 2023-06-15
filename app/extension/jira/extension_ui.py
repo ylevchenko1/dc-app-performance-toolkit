@@ -44,17 +44,9 @@ def app_specific_action(webdriver, datasets):
 
     @print_timing("selenium_app_custom_action")
     def measure():
-        @print_timing("selenium_app_custom_action:open_course")
-        def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
-            page.wait_until_visible((By.ID, "app-root-atlassian-jira-training"))
-        sub_measure()
-    measure()
-
-    def measure():
         @print_timing("selenium_app_custom_action:open_course_with_filters")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
-            page.wait_until_visible((By.ID, "app-root-atlassian-jira-training"))
+            page.wait_until_visible((By.XPATH, "//div[@data-testid='length-filter-card-Medium']")).click()
         sub_measure()
     measure()
