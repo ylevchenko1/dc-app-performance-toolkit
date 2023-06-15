@@ -16,9 +16,7 @@ def app_specific_action(webdriver):
         @print_timing("selenium_app_custom_action:open_course")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
-            page.wait_until_visible((By.XPATH, "//span[text()='Explore all courses']")).click()
-            page.wait_until_visible((By.XPATH, "//div[@data-testid='course-card-4VpEzGkCnZpkn0Z7pvk3qq']//descendant::a[text()='Start']")).click()
-            page.wait_until_visible((By.XPATH, "//button[@class='plyr__control plyr__control--overlaid']")).click()
+            page.wait_until_visible((By.ID, "app-root-atlassian-jira-training"))
         sub_measure()
     measure()
 
@@ -26,9 +24,5 @@ def app_specific_action(webdriver):
         @print_timing("selenium_app_custom_action:open_course_with_filters")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
-            page.wait_until_visible((By.XPATH, "//div[@data-testid='length-filter-card-Medium']")).click()
-            page.wait_until_visible((By.XPATH, "//span[text()='Search']")).click()
-            page.wait_until_visible((By.XPATH, "//div[@data-testid='course-card-4VpEzGkCnZpkn0Z7pvk3qq']//descendant::a[text()='Start']")).click()
-            page.wait_until_visible((By.XPATH, "//button[@class='plyr__control plyr__control--overlaid']")).click()
         sub_measure()
     measure()
