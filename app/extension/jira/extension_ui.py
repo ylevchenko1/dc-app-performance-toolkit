@@ -42,9 +42,6 @@ def app_specific_action(webdriver, datasets):
         sub_measure()
     measure()
 
-    def app_specific_action(webdriver):
-        page = BasePage(webdriver)
-
     @print_timing("selenium_app_custom_action")
     def measure():
         @print_timing("selenium_app_custom_action:open_course")
