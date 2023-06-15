@@ -8,16 +8,27 @@ from selenium_ui.jira.pages.pages import Login
 from util.conf import JIRA_SETTINGS
 
 
-def app_specific_action(webdriver, datasets):
+def app_specific_action(webdriver):
     page = BasePage(webdriver)
-    if datasets['custom_issues']:
-        issue_key = datasets['custom_issue_key']
 
     @print_timing("selenium_app_custom_action")
+    def measure():
+        @print_timing("selenium_app_custom_action:open_course")
+        def sub_measure():
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
+            page.wait_until_visible((By.XPATH, "//span[text()='Explore all courses']")).click()
+            page.wait_until_visible((By.XPATH, "//div[@data-testid='course-card-4VpEzGkCnZpkn0Z7pvk3qq']//descendant::a[text()='Start']")).click()
+            page.wait_until_visible((By.XPATH, "//button[@class='plyr__control plyr__control--overlaid']")).click()
+        sub_measure()
+    measure()
+
     def measure():
         @print_timing("selenium_app_custom_action:open_course_with_filters")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/atlassian-jira-training/app/app")
             page.wait_until_visible((By.XPATH, "//div[@data-testid='length-filter-card-Medium']")).click()
+            page.wait_until_visible((By.XPATH, "//span[text()='Search']")).click()
+            page.wait_until_visible((By.XPATH, "//div[@data-testid='course-card-4VpEzGkCnZpkn0Z7pvk3qq']//descendant::a[text()='Start']")).click()
+            page.wait_until_visible((By.XPATH, "//button[@class='plyr__control plyr__control--overlaid']")).click()
         sub_measure()
     measure()
