@@ -23,7 +23,9 @@
       "selenium_view_dashboard",
       "selenium_view_issue",
       "selenium_project_summary",
-      "selenium_log_out"
+      "selenium_log_out",
+      "selenium_app_custom_action",
+      "selenium_app_specific_user_login"
     ],
     "jmeter": [
       "jmeter_login_and_view_dashboard",
