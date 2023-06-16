@@ -43,15 +43,6 @@ def app_specific_action(webdriver, datasets):
 
     @print_timing("selenium_app_custom_action")
     def measure():
-        @print_timing("selenium_app_custom_action:open_course_with_filters")
-        def sub_measure():
-            page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/stg-jira-training/app/app")
-            page.wait_until_visible((By.ID, "//div[@data-testid='hero-section-image']"))
-        sub_measure()
-    measure()
-
-    @print_timing("selenium_app_custom_action")
-    def measure():
         @print_timing("selenium_app_custom_action:view_issue")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
