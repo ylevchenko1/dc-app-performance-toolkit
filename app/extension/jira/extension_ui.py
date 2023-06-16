@@ -34,7 +34,7 @@ def app_specific_action(webdriver, datasets):
 
     @print_timing("selenium_app_custom_action")
     def measure():
-        @print_timing("selenium_app_custom_action:open_course")
+        @print_timing("selenium_app_custom_action:open_app")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/stg-jira-training/app/app")
             page.wait_until_visible((By.ID, "app-root-stg-jira-training"))
@@ -47,5 +47,15 @@ def app_specific_action(webdriver, datasets):
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/stg-jira-training/app/app")
             page.wait_until_visible((By.XPATH, "//div[@data-testid='hero-section-image']"))
+        sub_measure()
+    measure()
+
+    @print_timing("selenium_app_custom_action")
+    def measure():
+        @print_timing("selenium_app_custom_action:open_course")
+        def sub_measure():
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/plugins/servlet/ac/stg-jira-training/app/app")
+            page.wait_until_visible((By.XPATH, "//span[text()='Browse the course catalog']")).click()
+            page.wait_until_visible((By.XPATH, "//div[@data-testid='course-card-c02b4653-29ae-4232-b630-f82376619c13']//descendant::a[text()='Start']")).click()
         sub_measure()
     measure()
